@@ -5,7 +5,7 @@ const scrollTopBtn = document.getElementById('scroll_top');
   // Offset values based on this elem
 const rootElem = document.documentElement;
 
-
+// scroll to top functionality 
 function scrollTop(){
   
     rootElem.scrollTo({
@@ -19,30 +19,28 @@ function scrollTop(){
 
 scrollTopBtn.addEventListener('click', scrollTop);
 
-// toggle scroll top
 
+
+// scroll top visibility toggler function
 window.onscroll = function () {
-  if (pageYOffset >= 300) {
-      scrollTopBtn.style.visibility = "visible";
-  } else {
-     scrollTopBtn.style.visibility = "hidden";
-  }
-};
+    if (pageYOffset >= 300) {
+        scrollTopBtn.style.visibility = "visible";
+    } else {
+        scrollTopBtn.style.visibility = "hidden";
+    }
+    };
 
- scrollTopBtn.onclick = function()
-{
-  scrollTo(document.body, 0, 0);
-}
+   
 
 function scrollTo(element, to, duration) {
-  var start = element.scrollTopBtn,
+  const start = element.scrollTopBtn,
       change = to - start,
       currentTime = 0,
       increment = 20;
 
-  var animateScroll = function(){        
+  const animateScroll = function(){        
       currentTime += increment;
-      var val = Math.easeInOutQuad(currentTime, start, change, duration);                        
+      const val = Math.easeInOutQuad(currentTime, start, change, duration);                        
       element.scrollTop = val; 
       if(currentTime < duration) {
           setTimeout(animateScroll, increment);
