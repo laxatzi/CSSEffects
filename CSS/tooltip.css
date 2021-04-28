@@ -1,0 +1,68 @@
+
+*, *::after, *::before {
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin:0;
+}
+
+.tooltip {
+   
+    font-family: 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
+    color: blue;
+    width: 15%;
+    min-height: 5vh;
+    background-color: beige;
+    border: 1px solid blue;
+    border-radius: 5px;
+    padding: 10px;
+    font-size:1.25rem;
+    position: relative;
+    margin: 0;
+}
+
+.tooltip::before,
+.tooltip::after {
+   /* variables */
+    --scale: 0;
+    --tooltip-color: #333;
+    --arrow-size: 10px;
+   
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    transform: translateX(-50%) translateY(var(--translate-y, 0)) scale(var(--scale));
+    transition: 50ms transform;
+    transform-origin: bottom center;
+
+}
+.tooltip::before {
+    content: attr(data-tooltip);
+    color: rgb(250, 250, 246);
+    font-size: 1rem;
+    background-color: var(--tooltip-color);
+    padding: 10px;
+    width: max-content;
+    max-width: 100%;
+    border-radius: 5px;
+    margin: 0;
+    text-align: center; 
+    --translate-y: calc(-100% - var(--arrow-size));
+}
+.tooltip::after {
+    content: '';
+    --translate-y: calc(-1 * var(--arrow-size));
+    border: var(--arrow-size) solid transparent;
+    border-top-color: var(--tooltip-color);
+    transform-origin: top center;  
+}
+
+.tooltip:hover::before,
+.tooltip:hover::after {
+    --scale: 1;
+}
